@@ -387,14 +387,12 @@ body::before{
     <div class="chat-panel" id="chat_panel">
       <div class="messages" id="messages"></div>
       <div class="input-area">
-        <div class="hint-row" id="hint_row">
-          <span class="hint" onclick="fillHint('早餐50元')">🌅 早餐50元</span>
-
-          <span class="hint" onclick="fillHint('薪水35000元收入')">💰 收入</span>
+        
+  
 
         </div>
         <div class="input-wrap">
-          <textarea class="chat-input" id="chat_input" placeholder="輸入「早餐80元」、「薪水35000收入」…" rows="1"
+          <textarea class="chat-input" id="chat_input" placeholder="輸入「早餐80元」、「薪水35000收入」…" rows="3"
             onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
           <div class="input-actions">
             <button class="icon-btn" id="voice_btn" onclick="toggleVoice()" title="語音輸入">🎙</button>

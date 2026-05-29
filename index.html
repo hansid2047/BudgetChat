@@ -952,10 +952,7 @@ function welcome() {
   const hr = new Date().getHours();
   const greet = hr<12?"早安 ☀":"午安 🌤";
   addMsg("bot", `
-    ${greet}！我是你的<strong style="color:var(--purple-l)">AI 記帳助手</strong> 💬<br><br>
-    你只需要用<strong>自然語言</strong>告訴我，例如：<br>
-    <code style="color:var(--teal);font-size:12px">「早餐便當85元」</code><br>
-    餐飲類會自動估算 <span style="color:var(--cal)">🔥 卡路里</span>，還可以點 <strong>🎙</strong> 使用語音輸入！`
+    ${greet}！我是你的<strong style="color:var(--purple-l)">AI 記帳助手`
   );
 }
 

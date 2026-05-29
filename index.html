@@ -865,7 +865,7 @@ function setTab(tab, el) {
 
 function renderRecordsPanel(main) {
   const mon = thisMonth();
-  const m   = records.filter(r=>r.date.startsWith(mon));
+  const m   = records.filter(r=>r.date.startsWith(mon)).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
   main.innerHTML = `
     <div style="flex:1;overflow-y:auto;padding:24px">
       <div style="font-size:20px;font-weight:700;margin-bottom:4px;font-family:'Space Grotesk'">📋 本月記錄</div>

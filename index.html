@@ -667,7 +667,7 @@ async function sendMessage() {
 
   const parsed = parseInput(txt);
 
-  if (!parsed.amount) {
+  if (!parsed.amount === null) {
     removeTyping();
     // General Q&A fallback
     addMsg("bot", `<span style="color:var(--text-m)">🤔 抱歉，我沒有找到金額資訊。</span><br>請試試像這樣說：<br><code style="color:var(--purple-l);font-size:12px">「午餐便當85元」「薪水50000收入」</code>`);

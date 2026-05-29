@@ -838,21 +838,27 @@ function renderSideRecent() {
 }
 
 // ── Tabs ───────────────────────────────────────────────────
+// Preserve chat & side panel references so they survive innerHTML overwrites
+const _chatPanel = document.getElementById("chat_panel");
+const _sidePanel = document.getElementById("side_panel");
+
 function setTab(tab, el) {
   currentTab = tab;
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
   el.classList.add("active");
 
-  const main   = document.getElementById("main_area");
-  const chat   = document.getElementById("chat_panel");
-  const side   = document.getElementById("side_panel");
+  const main = document.getElementById("main_area");
+
+  // Detach chat/side panels before any innerHTML overwrite so they are never destroyed
+  if (_chatPanel.parentNode) _chatPanel.parentNode.removeChild(_chatPanel);
+  if (_sidePanel.parentNode) _sidePanel.parentNode.removeChild(_sidePanel);
 
   if (tab === "chat") {
     main.innerHTML = "";
-    main.appendChild(chat);
-    main.appendChild(side);
-    chat.style.display = "flex";
-    side.style.display = "flex";
+    main.appendChild(_chatPanel);
+    main.appendChild(_sidePanel);
+    _chatPanel.style.display = "flex";
+    _sidePanel.style.display = "flex";
     scrollBottom();
   } else if (tab === "records") {
     renderRecordsPanel(main);

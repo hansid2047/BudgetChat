@@ -500,6 +500,15 @@ let recognition = null;
 
 // ── Helpers ───────────────────────────────────────────────
 function now() { const d=new Date(); return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0'); }
+function parseSheetTime(t) {
+  if (!t) return "";
+  const s = String(t);
+  const iso = s.match(/T(\d{2}):(\d{2})/);
+  if (iso) return iso[1] + ":" + iso[2];
+  const hm = s.match(/^(\d{1,2}):(\d{2})/);
+  if (hm) return hm[1].padStart(2,'0') + ":" + hm[2];
+  return s;
+}
 function today() { return new Date().toISOString().slice(0,10); }
 function thisMonth() { return new Date().toISOString().slice(0,7); }
 function fmt(n) { return Math.abs(n).toLocaleString(); }
@@ -961,7 +970,7 @@ async function loadFromGAS() {
   const r   = await gas({ action:"getRecords", month: mon });
   if (r?.ok && r.data?.length) {
     r.data.forEach(d => records.push({
-      date: d.date, time: d.time,
+      date: d.date, time: parseSheetTime(d.time),
       category: d.category, subCat: d.subCat,
       desc: d.desc, amount: d.amount,
       type: d.type, calories: d.calories,
